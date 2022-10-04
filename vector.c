@@ -1203,3 +1203,258 @@ void vector_void_vec_insert( vector* vec, size_t index, void* src, size_t size )
     vec->size += size;
 }
 
+
+
+//erase a range of elements from the vector. Starting from index and with size size
+void vector_char_vec_erase( vector* vec, size_t index, size_t size )
+{
+    if ( index + size > vec->size )
+    {
+        fprintf( stderr, "ERROR: index out of bound\n");
+        abort();
+    }
+    if ( vec->size - size <= vec->capacity / 4 )
+    {
+        while ( vec->size - size <= vec->capacity / 4 && vec->capacity > VEC_CAP )
+        {
+            if ( vec->capacity >= 256 )
+            {
+                vec->capacity -= 128;
+            }
+            else
+            {
+                vec->capacity /= 2;
+            }
+        }
+        vec->char_vec = realloc( vec->char_vec, vec->data_type_size * vec->capacity );
+        if ( !vec->char_vec )
+        {
+            free( vec->char_vec );
+            free( vec );
+            vec = NULL;
+            fprintf( stderr, "ERROR: realloc failed\n" );
+            abort();
+        }
+    }
+    memmove( &vec->char_vec[index], &vec->char_vec[ index + size ], ( vec->size - ( index + size ) ) * vec->data_type_size );
+    vec->size -= size;
+}
+
+void vector_short_vec_erase( vector* vec, size_t index, size_t size )
+{
+    if ( index + size > vec->size )
+    {
+        fprintf( stderr, "ERROR: index out of bound\n");
+        abort();
+    }
+    if ( vec->size - size <= vec->capacity / 4 )
+    {
+        while ( vec->size - size <= vec->capacity / 4 && vec->capacity > VEC_CAP )
+        {
+            if ( vec->capacity >= 256 )
+            {
+                vec->capacity -= 128;
+            }
+            else
+            {
+                vec->capacity /= 2;
+            }
+        }
+        vec->short_vec = realloc( vec->short_vec, vec->data_type_size * vec->capacity );
+        if ( !vec->short_vec )
+        {
+            free( vec->short_vec );
+            free( vec );
+            vec = NULL;
+            fprintf( stderr, "ERROR: realloc failed\n" );
+            abort();
+        }
+    }
+    memmove( &vec->short_vec[index], &vec->short_vec[ index + size ], ( vec->size - ( index + size ) ) * vec->data_type_size );
+    vec->size -= size;
+}
+
+void vector_int_vec_erase( vector* vec, size_t index, size_t size )
+{
+    if ( index + size > vec->size )
+    {
+        fprintf( stderr, "ERROR: index out of bound\n");
+        abort();
+    }
+    if ( vec->size - size <= vec->capacity / 4 )
+    {
+        while ( vec->size - size <= vec->capacity / 4 && vec->capacity > VEC_CAP )
+        {
+            if ( vec->capacity >= 256 )
+            {
+                vec->capacity -= 128;
+            }
+            else
+            {
+                vec->capacity /= 2;
+            }
+        }
+        vec->int_vec = realloc( vec->int_vec, vec->data_type_size * vec->capacity );
+        if ( !vec->int_vec )
+        {
+            free( vec->int_vec );
+            free( vec );
+            vec = NULL;
+            fprintf( stderr, "ERROR: realloc failed\n" );
+            abort();
+        }
+    }
+    memmove( &vec->int_vec[index], &vec->int_vec[ index + size ], ( vec->size - ( index + size ) ) * vec->data_type_size );
+    vec->size -= size;
+}
+
+void vector_float_vec_erase( vector* vec, size_t index, size_t size )
+{
+    if ( index + size > vec->size )
+    {
+        fprintf( stderr, "ERROR: index out of bound\n");
+        abort();
+    }
+    if ( vec->size - size <= vec->capacity / 4 )
+    {
+        while ( vec->size - size <= vec->capacity / 4 && vec->capacity > VEC_CAP )
+        {
+            if ( vec->capacity >= 256 )
+            {
+                vec->capacity -= 128;
+            }
+            else
+            {
+                vec->capacity /= 2;
+            }
+        }
+        vec->float_vec = realloc( vec->float_vec, vec->data_type_size * vec->capacity );
+        if ( !vec->float_vec )
+        {
+            free( vec->float_vec );
+            free( vec );
+            vec = NULL;
+            fprintf( stderr, "ERROR: realloc failed\n" );
+            abort();
+        }
+    }
+    memmove( &vec->float_vec[index], &vec->float_vec[ index + size ], ( vec->size - ( index + size ) ) * vec->data_type_size );
+    vec->size -= size;
+}
+
+void vector_long_vec_erase( vector* vec, size_t index, size_t size )
+{
+    if ( index + size > vec->size )
+    {
+        fprintf( stderr, "ERROR: index out of bound\n");
+        abort();
+    }
+    if ( vec->size - size <= vec->capacity / 4 )
+    {
+        while ( vec->size - size <= vec->capacity / 4 && vec->capacity > VEC_CAP )
+        {
+            if ( vec->capacity >= 256 )
+            {
+                vec->capacity -= 128;
+            }
+            else
+            {
+                vec->capacity /= 2;
+            }
+        }
+        vec->long_vec = realloc( vec->long_vec, vec->data_type_size * vec->capacity );
+        if ( !vec->long_vec )
+        {
+            free( vec->long_vec );
+            free( vec );
+            vec = NULL;
+            fprintf( stderr, "ERROR: realloc failed\n" );
+            abort();
+        }
+    }
+    memmove( &vec->long_vec[index], &vec->long_vec[ index + size ], ( vec->size - ( index + size ) ) * vec->data_type_size );
+    vec->size -= size;
+}
+
+void vector_double_vec_erase( vector* vec, size_t index, size_t size )
+{
+    if ( index + size > vec->size )
+    {
+        fprintf( stderr, "ERROR: index out of bound\n");
+        abort();
+    }
+    if ( vec->size - size <= vec->capacity / 4 )
+    {
+        while ( vec->size - size <= vec->capacity / 4 && vec->capacity > VEC_CAP )
+        {
+            if ( vec->capacity >= 256 )
+            {
+                vec->capacity -= 128;
+            }
+            else
+            {
+                vec->capacity /= 2;
+            }
+        }
+        vec->double_vec = realloc( vec->double_vec, vec->data_type_size * vec->capacity );
+        if ( !vec->double_vec )
+        {
+            free( vec->double_vec );
+            free( vec );
+            vec = NULL;
+            fprintf( stderr, "ERROR: realloc failed\n" );
+            abort();
+        }
+    }
+    memmove( &vec->double_vec[index], &vec->double_vec[ index + size ], ( vec->size - ( index + size ) ) * vec->data_type_size );
+    vec->size -= size;
+}
+
+void vector_void_vec_erase( vector* vec, size_t index, size_t size )
+{
+    if ( index + size > vec->size )
+    {
+        fprintf( stderr, "ERROR: index out of bound\n");
+        abort();
+    }
+    if ( vec->size - size <= vec->capacity / 4 )
+    {
+        while ( vec->size - size <= vec->capacity / 4 && vec->capacity > VEC_CAP )
+        {
+            if ( vec->capacity >= 256 )
+            {
+                vec->capacity -= 128;
+            }
+            else
+            {
+                vec->capacity /= 2;
+            }
+        }
+        vec->void_vec = realloc( vec->void_vec, vec->data_type_size * vec->capacity );
+        if ( !vec->void_vec )
+        {
+            free( vec->void_vec );
+            free( vec );
+            vec = NULL;
+            fprintf( stderr, "ERROR: realloc failed\n" );
+            abort();
+        }
+    }
+    memmove( (char*) vec->void_vec + index * vec->data_type_size, (char*) vec->void_vec + ( index + size ) * vec->data_type_size, ( vec->size - ( index + size ) ) * vec->data_type_size );
+    vec->size -= size;
+}
+
+void vector_erase( vector* vec, size_t index, size_t size )
+{
+    switch ( vec->data_type )
+    {
+        case CHAR:      vector_char_vec_erase( vec, index, size );      break;
+        case SHORT:     vector_short_vec_erase( vec, index, size );     break;
+        case INT:       vector_int_vec_erase( vec, index, size );       break;
+        case FLOAT:     vector_float_vec_erase( vec, index, size );     break;
+        case LONG:      vector_long_vec_erase( vec, index, size );      break;
+        case DOUBLE:    vector_double_vec_erase( vec, index, size );    break;
+        case VOID:      vector_void_vec_erase( vec, index, size );      break;
+        default:        fprintf( stderr, "ERROR: bad vector\n" );       abort();
+    }
+}

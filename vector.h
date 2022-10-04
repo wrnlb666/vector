@@ -67,6 +67,7 @@ void vector_void_vec_assign( vector* vec, void* src, size_t size );
 void vector_assign_error( void );
 
 //call vector_assign( vector* vec, <T> target, size_t size). Size is the number of elements needs to be assigned not the actual bytes account.
+//ATTENTION: size_t size is the number of elements!!! This Apply To All size_t size In This Library!!!
 #define vector_assign( vector, src, size )                                          \
     _Generic ( (src),                                                               \
             char*:      vector_char_vec_assign,                                     \
@@ -130,6 +131,7 @@ void vector_double_vec_insert( vector* vec, size_t index, double* src, size_t si
 void vector_void_vec_insert( vector* vec, size_t index, void* src, size_t size );
 
 //call vector_insert( vector* vec, size_t index, <T> src, size_t size ). For void_vec, user need to make sure sturct/type are of the same exact struct/type.
+//ATTENTION: size_t size is the number of elements!!!
 #define vector_insert( vector, index, src, size )                                   \
     _Generic ( (src),                                                               \
             char*:      vector_char_vec_insert,                                     \
@@ -140,6 +142,23 @@ void vector_void_vec_insert( vector* vec, size_t index, void* src, size_t size )
             double*:    vector_double_vec_insert,                                   \
             void*:      vector_void_vec_insert                                      \
     )( vec, index, src, size )                                                      //vector_insert( vector* vec, size_t index, <T> src, size_t size )
+
+
+
+//erase: erase a range of elements form the vector. Starting from index, with size size
+void vector_char_vec_erase( vector* vec, size_t index, size_t size );
+void vector_short_vec_erase( vector* vec, size_t index, size_t size );
+void vector_int_vec_erase( vector* vec, size_t index, size_t size );
+void vector_float_vec_erase( vector* vec, size_t index, size_t size );
+void vector_long_vec_erase( vector* vec, size_t index, size_t size );
+void vector_double_vec_erase( vector* vec, size_t index, size_t size );
+void vector_void_vec_erase( vector* vec, size_t index, size_t size );
+
+//call vector_erase( vector* vec, size_t index, size_t size ). 
+//ATTENTION: size_t size is the number of elements!!!
+void vector_erase( vector* vec, size_t index, size_t size );
+
+
 
 
 #endif  // vector.h
