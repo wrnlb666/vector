@@ -90,7 +90,7 @@ void vector_double_vec_assign( vector* vec, double* src, size_t size );
 void vector_void_vec_assign( vector* vec, void* src, size_t size );
 void vector_assign_error( void );
 
-//call vector_assign( vector* vec, <T> target, size_t size). Size is the number of elements needs to be assigned not the actual bytes account.
+//call vector_assign( vector* vec, <T*> target, size_t size). Size is the number of elements needs to be assigned not the actual bytes account.
 //ATTENTION: size_t size is the number of elements!!! This Apply To All size_t size In This Library!!!
 #define vector_assign( vector, src, size )                                          \
     _Generic ( (src),                                                               \
@@ -154,7 +154,7 @@ void vector_long_vec_insert( vector* vec, size_t index, long* src, size_t size )
 void vector_double_vec_insert( vector* vec, size_t index, double* src, size_t size );
 void vector_void_vec_insert( vector* vec, size_t index, void* src, size_t size );
 
-//call vector_insert( vector* vec, size_t index, <T> src, size_t size ). For void_vec, user need to make sure sturct/type are of the same exact struct/type.
+//call vector_insert( vector* vec, size_t index, <T*> src, size_t size ). For void_vec, user need to make sure sturct/type are of the same exact struct/type.
 //ATTENTION: size_t size is the number of elements!!!
 #define vector_insert( vector, index, src, size )                                   \
     _Generic ( (src),                                                               \
@@ -186,7 +186,7 @@ void vector_erase( vector* vec, size_t index, size_t size );
 
 //clear: deallocate the vector (basically destroy the vector and free the memory)
 //call vector_clear( vector* vec )
-void vector_clear( vector* vec )
+void vector_clear( vector* vec );
 
 
 #endif  // vector.h

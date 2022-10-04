@@ -346,6 +346,12 @@ void* vector_void_vec_get( vector* vec, size_t index, void* buff )
 //assign a existing array to the vector
 void vector_char_vec_assign( vector* vec, char* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != CHAR )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( size >= vec->capacity )
     {
         while ( size >= vec->capacity )
@@ -398,6 +404,12 @@ void vector_char_vec_assign( vector* vec, char* src, size_t size )
 
 void vector_short_vec_assign( vector* vec, short* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != SHORT )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( size >= vec->capacity )
     {
         while ( size >= vec->capacity )
@@ -450,6 +462,12 @@ void vector_short_vec_assign( vector* vec, short* src, size_t size )
 
 void vector_int_vec_assign( vector* vec, int* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != INT )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( size >= vec->capacity )
     {
         while ( size >= vec->capacity )
@@ -502,6 +520,12 @@ void vector_int_vec_assign( vector* vec, int* src, size_t size )
 
 void vector_float_vec_assign( vector* vec, float* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != FLOAT )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( size >= vec->capacity )
     {
         while ( size >= vec->capacity )
@@ -554,6 +578,12 @@ void vector_float_vec_assign( vector* vec, float* src, size_t size )
 
 void vector_long_vec_assign( vector* vec, long* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != LONG )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( size >= vec->capacity )
     {
         while ( size >= vec->capacity )
@@ -606,6 +636,12 @@ void vector_long_vec_assign( vector* vec, long* src, size_t size )
 
 void vector_double_vec_assign( vector* vec, double* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != DOUBLE )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( size >= vec->capacity )
     {
         while ( size >= vec->capacity )
@@ -658,6 +694,12 @@ void vector_double_vec_assign( vector* vec, double* src, size_t size )
 
 void vector_void_vec_assign( vector* vec, void* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != VOID )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( size >= vec->capacity )
     {
         while ( size >= vec->capacity )
@@ -719,6 +761,12 @@ void vector_assign_error( void )
 //push an element to the back of the vector
 void vector_char_vec_push_back( vector* vec, char target )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != CHAR )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size == vec->capacity )
     {
         if ( vec->capacity >= 256 )
@@ -744,6 +792,12 @@ void vector_char_vec_push_back( vector* vec, char target )
 
 void vector_short_vec_push_back( vector* vec, short target )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != SHORT )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size == vec->capacity )
     {
         if ( vec->capacity >= 256 )
@@ -769,6 +823,12 @@ void vector_short_vec_push_back( vector* vec, short target )
 
 void vector_int_vec_push_back( vector* vec, int target )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != INT )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size == vec->capacity )
     {
         if ( vec->capacity >= 256 )
@@ -794,6 +854,12 @@ void vector_int_vec_push_back( vector* vec, int target )
 
 void vector_float_vec_push_back( vector* vec, float target )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != FLOAT )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size == vec->capacity )
     {
         if ( vec->capacity >= 256 )
@@ -819,6 +885,12 @@ void vector_float_vec_push_back( vector* vec, float target )
 
 void vector_long_vec_push_back( vector* vec, long target )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != LONG )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size == vec->capacity )
     {
         if ( vec->capacity >= 256 )
@@ -844,6 +916,12 @@ void vector_long_vec_push_back( vector* vec, long target )
 
 void vector_double_vec_push_back( vector* vec, double target )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != DOUBLE )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size == vec->capacity )
     {
         if ( vec->capacity >= 256 )
@@ -869,6 +947,12 @@ void vector_double_vec_push_back( vector* vec, double target )
 
 void vector_void_vec_push_back( vector* vec, void* target )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != VOID )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size == vec->capacity )
     {
         if ( vec->capacity >= 256 )
@@ -1095,10 +1179,12 @@ void vector_double_vec_pop_back( vector* vec )
 
 void vector_void_vec_pop_back( vector* vec )
 {
+    #ifdef VECTOR_WARNING
     if ( !vec->size )
     {
         fprintf( stderr, "WARNING: vector is already empty\n" );
     }
+    #endif
     else
     {
         if ( vec->size <= vec->capacity / 3 && vec->capacity > VEC_CAP )
@@ -1145,6 +1231,12 @@ void vector_pop_back( vector* vec )
 //insert an array into the vector at specified index/position in the vector
 void vector_char_vec_insert( vector* vec, size_t index, char* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != CHAR )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size + size >= vec->capacity )
     {
         while ( vec->size + size >= vec->capacity )
@@ -1175,6 +1267,12 @@ void vector_char_vec_insert( vector* vec, size_t index, char* src, size_t size )
 
 void vector_short_vec_insert( vector* vec, size_t index, short* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != SHORT )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size + size >= vec->capacity )
     {
         while ( vec->size + size >= vec->capacity )
@@ -1205,6 +1303,12 @@ void vector_short_vec_insert( vector* vec, size_t index, short* src, size_t size
 
 void vector_int_vec_insert( vector* vec, size_t index, int* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != INT )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size + size >= vec->capacity )
     {
         while ( vec->size + size >= vec->capacity )
@@ -1235,6 +1339,12 @@ void vector_int_vec_insert( vector* vec, size_t index, int* src, size_t size )
 
 void vector_float_vec_insert( vector* vec, size_t index, float* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != FLOAT )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size + size >= vec->capacity )
     {
         while ( vec->size + size >= vec->capacity )
@@ -1265,6 +1375,12 @@ void vector_float_vec_insert( vector* vec, size_t index, float* src, size_t size
 
 void vector_long_vec_insert( vector* vec, size_t index, long* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != LONG )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size + size >= vec->capacity )
     {
         while ( vec->size + size >= vec->capacity )
@@ -1295,6 +1411,12 @@ void vector_long_vec_insert( vector* vec, size_t index, long* src, size_t size )
 
 void vector_double_vec_insert( vector* vec, size_t index, double* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != DOUBLE )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size + size >= vec->capacity )
     {
         while ( vec->size + size >= vec->capacity )
@@ -1325,6 +1447,12 @@ void vector_double_vec_insert( vector* vec, size_t index, double* src, size_t si
 
 void vector_void_vec_insert( vector* vec, size_t index, void* src, size_t size )
 {
+    #ifdef VECTOR_WARNING
+    if ( vec->data_type != VOID )
+    {
+        fprintf( stderr, "WARNING: incompatible data type\n" );
+    }
+    #endif
     if ( vec->size + size >= vec->capacity )
     {
         while ( vec->size + size >= vec->capacity )
