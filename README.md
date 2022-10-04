@@ -38,3 +38,7 @@ void      vector_erase( vector* vec, size_t index, size_t size );
 void      vector_clear( vector* vec );
 ```
 
+```
+#define VECTOR_WARNING
+```
+to active warning message
