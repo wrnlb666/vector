@@ -1,5 +1,5 @@
-#ifndef __ARRAYLIST_H__
-#define __ARRAYLIST_H__
+#ifndef __VECTOR_H__
+#define __VECTOR_H__
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -50,7 +50,7 @@ vector* vector_new_long_vec( void );
 vector* vector_new_double_vec( void );
 vector* vector_new_void_vec( size_t data_type_size );
 
-//call vector_new_vector( int data_type ). 
+//call vector_new_vector( int data_type ). E.g. int_vec: vector* [name] = vector_new_vector( INT );
 //For void_vec, call vector_new_vector( VOID | int data_type_size ). Maximum data_type_size being 8388608 bytes. 
 vector* vector_new_vector( int data_type );                                         //vector_new_vector( int data_type )
 
@@ -142,4 +142,4 @@ void vector_void_vec_insert( vector* vec, size_t index, void* src, size_t size )
     )( vec, index, src, size )                                                      //vector_insert( vector* vec, size_t index, <T> src, size_t size )
 
 
-#endif  // arraylist.h
+#endif  // vector.h
