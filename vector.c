@@ -989,7 +989,9 @@ void vector_char_vec_pop_back( vector* vec )
 {
     if ( !vec->size )
     {
+        #ifdef VECTOR_WARNING
         fprintf( stderr, "WARNING: vector is already empty\n" );
+        #endif
     }
     else
     {
@@ -1021,7 +1023,9 @@ void vector_short_vec_pop_back( vector* vec )
 {
     if ( !vec->size )
     {
+        #ifdef VECTOR_WARNING
         fprintf( stderr, "WARNING: vector is already empty\n" );
+        #endif
     }
     else
     {
@@ -1053,7 +1057,9 @@ void vector_int_vec_pop_back( vector* vec )
 {
     if ( !vec->size )
     {
+        #ifdef VECTOR_WARNING
         fprintf( stderr, "WARNING: vector is already empty\n" );
+        #endif
     }
     else
     {
@@ -1085,7 +1091,9 @@ void vector_float_vec_pop_back( vector* vec )
 {
     if ( !vec->size )
     {
+        #ifdef VECTOR_WARNING
         fprintf( stderr, "WARNING: vector is already empty\n" );
+        #endif
     }
     else
     {
@@ -1117,7 +1125,9 @@ void vector_long_vec_pop_back( vector* vec )
 {
     if ( !vec->size )
     {
+        #ifdef VECTOR_WARNING
         fprintf( stderr, "WARNING: vector is already empty\n" );
+        #endif
     }
     else
     {
@@ -1149,7 +1159,9 @@ void vector_double_vec_pop_back( vector* vec )
 {
     if ( !vec->size )
     {
+        #ifdef VECTOR_WARNING
         fprintf( stderr, "WARNING: vector is already empty\n" );
+        #endif
     }
     else
     {
@@ -1179,12 +1191,12 @@ void vector_double_vec_pop_back( vector* vec )
 
 void vector_void_vec_pop_back( vector* vec )
 {
-    #ifdef VECTOR_WARNING
     if ( !vec->size )
     {
+        #ifdef VECTOR_WARNING
         fprintf( stderr, "WARNING: vector is already empty\n" );
+        #endif
     }
-    #endif
     else
     {
         if ( vec->size <= vec->capacity / 3 && vec->capacity > VEC_CAP )
