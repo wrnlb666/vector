@@ -1,5 +1,5 @@
 # vector
-vector for C
+vector for C (ISO C11 or later)
 
 API should be pretty similar to what cpp's vector provides. 
 
