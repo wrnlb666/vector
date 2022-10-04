@@ -1,5 +1,7 @@
 # vector
-vector for C (ISO C11 or later)
+vector for C 
+
+Require ISO C11 or later. 
 
 API should be pretty similar to what cpp's vector provides. 
 
