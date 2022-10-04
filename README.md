@@ -1,7 +1,9 @@
 # vector
-vector for C 
+vector for pure C.  
 
-Require ISO C11 or later. 
+Require ISO C11 or later for ```_Generic``` keyword. 
+
+Differences among other C vectors: User may use any primitive data (```char, short, int, float, long, double```) type directly. 
 
 API should be pretty similar to what cpp's vector provides. 
 
