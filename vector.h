@@ -18,7 +18,7 @@ typedef enum primitive_data_type
 }primitive_data_type;
 
 
-#define VEC_CAP 8               //vector default capacity, applys to all types. (iterator?)
+#define VEC_CAP 8               //vector default capacity, applys to all types. 
 
 typedef struct vector
 {
@@ -56,6 +56,30 @@ vector* vector_new_vector( int data_type );                                     
 
 
 
+//get value function
+char    vector_char_vec_get( vector* vec, size_t index, char* buff );
+short   vector_short_vec_get( vector* vec, size_t index, short* buff );
+int     vector_int_vec_get( vector* vec, size_t index, int* buff );
+float   vector_float_vec_get( vector* vec, size_t index, float* buff );
+long    vector_long_vec_get( vector* vec, size_t index, long* buff );
+double  vector_double_vec_get( vector* vec, size_t index, double* buff );
+void*   vector_void_vec_get( vector* vec, size_t index, void* buff );
+
+//call vector_get( vector* vec, size_t index, <T*> buff ). E.g. get 2nd int (index 1) value from vector* vec: int* [name] = vector_get( vec, 1, [name] );
+#define vector_get( vector, index, buff )                                           \
+    _Generic ( (buff),                                                              \
+            char*:      vector_char_vec_get,                                        \
+            short*:     vector_short_vec_get,                                       \
+            int*:       vector_int_vec_get,                                         \
+            float*:     vector_float_vec_get,                                       \
+            long*:      vector_long_vec_get,                                        \
+            double:     vector_double_vec_get,                                      \
+            void*:      vector_void_vec_get                                         \
+    )( vector, index, buff )                                                        //vector_get( vector* vec, size_t index, <T*> buff )
+
+
+
+
 //assign: assign a existing array to the vector
 void vector_char_vec_assign( vector* vec, char* src, size_t size );
 void vector_short_vec_assign( vector* vec, short* src, size_t size );
@@ -78,7 +102,7 @@ void vector_assign_error( void );
             double*:    vector_double_vec_assign,                                   \
             void*:      vector_void_vec_assign,                                     \
             default:    vector_assign_error                                         \
-    )( vector, src, size )                                                          //vector_assign( vector* vec, <T> target, size_t size)
+    )( vector, src, size )                                                          //vector_assign( vector* vec, <T*> target, size_t size)
 
 
 
@@ -141,7 +165,7 @@ void vector_void_vec_insert( vector* vec, size_t index, void* src, size_t size )
             long*:      vector_long_vec_insert,                                     \
             double*:    vector_double_vec_insert,                                   \
             void*:      vector_void_vec_insert                                      \
-    )( vec, index, src, size )                                                      //vector_insert( vector* vec, size_t index, <T> src, size_t size )
+    )( vec, index, src, size )                                                      //vector_insert( vector* vec, size_t index, <T*> src, size_t size )
 
 
 
