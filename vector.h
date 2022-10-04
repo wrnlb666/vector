@@ -4,18 +4,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <stdint.h>
 
 
 typedef enum primitive_data_type
 {
-    CHAR,
-    SHORT,
-    INT,
-    FLOAT,
-    LONG,
-    DOUBLE,
-    VOID
+    CHAR    = 1 << 24,
+    SHORT   = 1 << 25,
+    INT     = 1 << 26,
+    FLOAT   = 1 << 27,
+    LONG    = 1 << 28,
+    DOUBLE  = 1 << 29,
+    VOID    = 1 << 30
 }primitive_data_type;
 
 
@@ -51,8 +50,9 @@ vector* vector_new_long_vec( void );
 vector* vector_new_double_vec( void );
 vector* vector_new_void_vec( size_t data_type_size );
 
-//call vector_new_vector( int data_type, size_t data_type_size ). data_type_ize of primitive types doesn't really matter. 
-vector* vector_new_vector( int data_type, size_t data_type_size );                  //vector_new_vector( int data_type, size_t data_type_size )
+//call vector_new_vector( int data_type ). 
+//For void_vec, call vector_new_vector( VOID | int data_type_size ). Maximum data_type_size being 8388608 bytes. 
+vector* vector_new_vector( int data_type );                                         //vector_new_vector( int data_type )
 
 
 

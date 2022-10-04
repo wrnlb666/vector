@@ -142,7 +142,7 @@ vector* vector_new_void_vec( size_t data_type_size )
     return temp;
 }
 
-vector* vector_new_vector( int data_type, size_t data_type_size )
+vector* vector_new_vector( int data_type )
 {
     vector* temp = NULL;
     switch ( data_type )
@@ -165,12 +165,19 @@ vector* vector_new_vector( int data_type, size_t data_type_size )
         case DOUBLE:
             temp = vector_new_double_vec();
             break;
-        case VOID:
-            temp = vector_new_void_vec( data_type_size );
-            break;
         default:
-            fprintf( stderr, "ERROR: Wrong data_type input\n" );
-            abort();
+        {
+            if ( data_type >> 30 == 1 )
+            {
+                size_t data_type_size_x4 = data_type << 2;
+                temp = vector_new_void_vec( data_type_size_x4 >> 2 );
+            }
+            else
+            {
+                fprintf( stderr, "ERROR: Wrong data_type input\n" );
+                abort();
+            }
+        }
     }
     if ( temp )
     {
