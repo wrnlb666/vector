@@ -1608,3 +1608,12 @@ void vector_erase( vector* vec, size_t index, size_t size )
         default:        fprintf( stderr, "ERROR: bad vector\n" );       abort();
     }
 }
+
+
+
+void vector_clear( vector* vec )
+{
+    free( vec->void_vec );
+    free( vec );
+    vec = NULL;
+}

@@ -184,5 +184,9 @@ void vector_erase( vector* vec, size_t index, size_t size );
 
 
 
+//clear: deallocate the vector (basically destroy the vector and free the memory)
+//call vector_clear( vector* vec )
+void vector_clear( vector* vec )
+
 
 #endif  // vector.h
