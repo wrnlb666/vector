@@ -90,17 +90,20 @@ void*   vector_void_vec_get( vector* vec, size_t index );
 int     vector_get_error_case( void );
 
 //call vector_get( vector* vec, size_t index ). E.g. get 2nd int (index 1) value from vector* vec: int [name] = vector_get( vec, 1 );
-//For void_vec, the return value is of type intptr_t, which needs to be cast to the original type
-//E.g. if the original type is size_t: size_t buffer = (size_t*) vector_get( vector, index );
+//For some reason, the return value will be of type double (my guess is that double is the largest?). Cast them before using. 
+//Don't free the ptr return by vector_void_vec_get
+//E.g. if the original type is size_t: size_t buffer = *(size_t*) (intptr_t) vector_get( vector, index );
 #define vector_get( vector, index )                                                                 \
+    (                                                                                               \
         vector->data_type == CHAR   ?  (char)       vector_char_vec_get( vector, index )    :       \
         vector->data_type == SHORT  ?  (short)      vector_short_vec_get( vector, index )   :       \
         vector->data_type == INT    ?  (int)        vector_int_vec_get( vector, index )     :       \
         vector->data_type == FLOAT  ?  (float)      vector_float_vec_get( vector, index )   :       \
         vector->data_type == LONG   ?  (long)       vector_long_vec_get( vector, index )    :       \
         vector->data_type == DOUBLE ?  (double)     vector_double_vec_get( vector, index )  :       \
-        vector->data_type == VOID   ? *(intptr_t*)  vector_void_vec_get( vector, index )    :       \
-        vector_get_error_case()
+        vector->data_type == VOID   ?  (intptr_t)   vector_void_vec_get( vector, index )    :       \
+        vector_get_error_case()                                                                     \
+    )
 
 
 

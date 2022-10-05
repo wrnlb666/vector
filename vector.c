@@ -289,8 +289,7 @@ void* vector_void_vec_get( vector* vec, size_t index )
         fprintf( stderr, "ERROR: index out of bound\n");
         abort();
     }
-    void* temp = malloc( vec->data_type_size );
-    memcpy( temp, (char*) vec->void_vec + index * vec->data_type_size, vec->data_type_size );
+    void* temp = (char*) vec->void_vec + index * vec->data_type_size;
     return temp;
 }
 
