@@ -1,4 +1,4 @@
-//Copyright (c) 2022 wrnlb666
+//Copyright (c) 2022 Zhang Yixiang
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +20,13 @@
 
 
 
-
 #ifndef __VECTOR_H__
 #define __VECTOR_H__
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 
 
 typedef enum primitive_data_type
@@ -80,25 +80,27 @@ vector* vector_new_vector( int data_type );                                     
 
 
 //get value function
-char    vector_char_vec_get( vector* vec, size_t index, char* buff );
-short   vector_short_vec_get( vector* vec, size_t index, short* buff );
-int     vector_int_vec_get( vector* vec, size_t index, int* buff );
-float   vector_float_vec_get( vector* vec, size_t index, float* buff );
-long    vector_long_vec_get( vector* vec, size_t index, long* buff );
-double  vector_double_vec_get( vector* vec, size_t index, double* buff );
-void*   vector_void_vec_get( vector* vec, size_t index, void* buff );
+char    vector_char_vec_get( vector* vec, size_t index );
+short   vector_short_vec_get( vector* vec, size_t index );
+int     vector_int_vec_get( vector* vec, size_t index );
+float   vector_float_vec_get( vector* vec, size_t index );
+long    vector_long_vec_get( vector* vec, size_t index );
+double  vector_double_vec_get( vector* vec, size_t index );
+void*   vector_void_vec_get( vector* vec, size_t index );
+int     vector_get_error_case( void );
 
-//call vector_get( vector* vec, size_t index, <T*> buff ). E.g. get 2nd int (index 1) value from vector* vec: int* [name] = vector_get( vec, 1, [name] );
-#define vector_get( vector, index, buff )                                           \
-    _Generic ( (buff),                                                              \
-            char*:      vector_char_vec_get,                                        \
-            short*:     vector_short_vec_get,                                       \
-            int*:       vector_int_vec_get,                                         \
-            float*:     vector_float_vec_get,                                       \
-            long*:      vector_long_vec_get,                                        \
-            double:     vector_double_vec_get,                                      \
-            void*:      vector_void_vec_get                                         \
-    )( vector, index, buff )                                                        //vector_get( vector* vec, size_t index, <T*> buff )
+//call vector_get( vector* vec, size_t index ). E.g. get 2nd int (index 1) value from vector* vec: int [name] = vector_get( vec, 1 );
+//For void_vec, the return value is of type intptr_t, which needs to be cast to the original type
+//E.g. if the original type is size_t: size_t buffer = (size_t*) vector_get( vector, index );
+#define vector_get( vector, index )                                                                 \
+        vector->data_type == CHAR   ?  (char)       vector_char_vec_get( vector, index )    :       \
+        vector->data_type == SHORT  ?  (short)      vector_short_vec_get( vector, index )   :       \
+        vector->data_type == INT    ?  (int)        vector_int_vec_get( vector, index )     :       \
+        vector->data_type == FLOAT  ?  (float)      vector_float_vec_get( vector, index )   :       \
+        vector->data_type == LONG   ?  (long)       vector_long_vec_get( vector, index )    :       \
+        vector->data_type == DOUBLE ?  (double)     vector_double_vec_get( vector, index )  :       \
+        vector->data_type == VOID   ? *(intptr_t*)  vector_void_vec_get( vector, index )    :       \
+        vector_get_error_case()
 
 
 

@@ -1,4 +1,4 @@
-//Copyright (c) 2022 wrnlb666
+//Copyright (c) 2022 Zhang Yixiang
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -17,8 +17,6 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-
-
 
 
 
@@ -218,151 +216,89 @@ vector* vector_new_vector( int data_type )
 
 
 //get the value of specified index, value will be stored in char* buff
-char vector_char_vec_get( vector* vec, size_t index, char* buff )
+char vector_char_vec_get( vector* vec, size_t index )
 {
-    #ifdef VECTOR_WARNING
-    if ( vec->data_type != CHAR )
-    {
-        fprintf( stderr, "WARNING: incompatible data type\n" );
-    }
-    #endif
     if ( index >= vec->size )
     {
         fprintf( stderr, "ERROR: index out of bound\n");
         abort();
     }
-    if ( buff == NULL )
-    {
-        buff = malloc( vec->data_type_size );
-    }
-    *buff = vec->char_vec[index];
-    return *buff;
+    char temp = vec->char_vec[index];
+    return temp;
 }
 
-short vector_short_vec_get( vector* vec, size_t index, short* buff )
+short vector_short_vec_get( vector* vec, size_t index )
 {
-    #ifdef VECTOR_WARNING
-    if ( vec->data_type != SHORT )
-    {
-        fprintf( stderr, "WARNING: incompatible data type\n" );
-    }
-    #endif
     if ( index >= vec->size )
     {
         fprintf( stderr, "ERROR: index out of bound\n");
         abort();
     }
-    if ( buff == NULL )
-    {
-        buff = malloc( vec->data_type_size );
-    }
-    *buff = vec->short_vec[index];
-    return *buff;
+    short temp = vec->short_vec[index];
+    return temp;
 }
 
-int vector_int_vec_get( vector* vec, size_t index, int* buff )
+int vector_int_vec_get( vector* vec, size_t index )
 {
-    #ifdef VECTOR_WARNING
-    if ( vec->data_type != INT )
-    {
-        fprintf( stderr, "WARNING: incompatible data type\n" );
-    }
-    #endif
     if ( index >= vec->size )
     {
         fprintf( stderr, "ERROR: index out of bound\n");
         abort();
     }
-    if ( buff == NULL )
-    {
-        buff = malloc( vec->data_type_size );
-    }
-    *buff = vec->int_vec[index];
-    return *buff;
+    int temp = vec->int_vec[index];
+    return temp;
 }
 
-float vector_float_vec_get( vector* vec, size_t index, float* buff )
+float vector_float_vec_get( vector* vec, size_t index )
 {
-    #ifdef VECTOR_WARNING
-    if ( vec->data_type != FLOAT )
-    {
-        fprintf( stderr, "WARNING: incompatible data type\n" );
-    }
-    #endif
     if ( index >= vec->size )
     {
         fprintf( stderr, "ERROR: index out of bound\n");
         abort();
     }
-    if ( buff == NULL )
-    {
-        buff = malloc( vec->data_type_size );
-    }
-    *buff = vec->float_vec[index];
-    return *buff;
+    float temp = vec->float_vec[index];
+    return temp;
 }
 
-long vector_long_vec_get( vector* vec, size_t index, long* buff )
+long vector_long_vec_get( vector* vec, size_t index )
 {
-    #ifdef VECTOR_WARNING
-    if ( vec->data_type != LONG )
-    {
-        fprintf( stderr, "WARNING: incompatible data type\n" );
-    }
-    #endif
     if ( index >= vec->size )
     {
         fprintf( stderr, "ERROR: index out of bound\n");
         abort();
     }
-    if ( buff == NULL )
-    {
-        buff = malloc( vec->data_type_size );
-    }
-    *buff = vec->long_vec[index];
-    return *buff;
+    long temp = vec->long_vec[index];
+    return temp;
 }
 
-double vector_double_vec_get( vector* vec, size_t index, double* buff )
+double vector_double_vec_get( vector* vec, size_t index )
 {
-    #ifdef VECTOR_WARNING
-    if ( vec->data_type != DOUBLE )
-    {
-        fprintf( stderr, "WARNING: incompatible data type\n" );
-    }
-    #endif
     if ( index >= vec->size )
     {
         fprintf( stderr, "ERROR: index out of bound\n");
         abort();
     }
-    if ( buff == NULL )
-    {
-        buff = malloc( vec->data_type_size );
-    }
-    *buff = vec->double_vec[index];
-    return *buff;
+    double temp = vec->double_vec[index];
+    return temp;
 }
 
-void* vector_void_vec_get( vector* vec, size_t index, void* buff )
+void* vector_void_vec_get( vector* vec, size_t index )
 {
-    #ifdef VECTOR_WARNING
-    if ( vec->data_type != VOID )
-    {
-        fprintf( stderr, "WARNING: incompatible data type\n" );
-    }
-    #endif
     if ( index >= vec->size )
     {
         fprintf( stderr, "ERROR: index out of bound\n");
         abort();
     }
-    if ( buff == NULL )
-    {
-        buff = malloc( vec->data_type_size );
-    }
-    memcpy( buff, (char*) vec->void_vec + index * vec->data_type_size, vec->data_type_size );
-    return buff;
+    void* temp = malloc( vec->data_type_size );
+    memcpy( temp, (char*) vec->void_vec + index * vec->data_type_size, vec->data_type_size );
+    return temp;
+}
+
+int vector_get_error_case( void )
+{
+    fprintf( stderr, "ERROR: bad vector\n" );
+    abort();
+    return -1;
 }
 
 
