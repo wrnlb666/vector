@@ -33,7 +33,7 @@ API list:
 
 ```
 vector*   vector_new_vector( int data_type );
-<T>       vector_get( vec* vector, size_t index, <T*> buff );
+<T>       vector_get( vec* vector, size_t index );
 void      vector_assign( vector* vec, <T*> target, size_t size);
 void      vector_push_back( vector* vec, <T> target );
 void      vector_pop_back( vector* vec );
