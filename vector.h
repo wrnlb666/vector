@@ -55,10 +55,10 @@ typedef struct vector
         double* double_vec;
         void*   void_vec;
     };
-    size_t  size;               //current size of the vector
-    size_t  capacity;           //current capacity of the vecctor
-    int     data_type;          //data type of the vector
-    size_t  data_type_size;     //sizeof element in void_vec
+    _Atomic size_t  size;               //current size of the vector
+    _Atomic size_t  capacity;           //current capacity of the vecctor
+    _Atomic int     data_type;          //data type of the vector
+    _Atomic size_t  data_type_size;     //sizeof element in void_vec
 }vector;
 
 
